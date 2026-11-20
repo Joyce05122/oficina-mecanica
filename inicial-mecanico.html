@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/inicial-mecanico.css">
+    <title>Motrix | Painel do Mecânico</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-mecanico.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-mecanico.html" class="ativo">Inicial</a>
+            <a href="servicos-mecanico.html">Ordens de Serviço</a>
+            <a href="agenda-mecanico.html">Minha agenda</a>
+            <a href="dados-mecanico.html">Meus dados</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarMecanico">M</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Mecânico</strong>
+                <span>Perfil mecânico</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="boas-vindas">
+            <div>
+                <h2 id="saudacaoMecanico">Olá, Mecânico!</h2>
+                <p>Consulte suas ordens de serviço e acompanhe seus atendimentos.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Ordens pendentes</span>
+                </div>
+                <h2 id="mecPendentes">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Em andamento</span>
+                </div>
+                <h2 id="mecAndamento">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Concluídas</span>
+                </div>
+                <h2 id="mecConcluidas">0</h2>
+            </article>
+
+        </section>
+
+        <section class="painel-inferior">
+
+            <div class="bloco">
+
+                <div class="bloco-titulo">
+                    <div>
+                        <h3>Minhas ordens de serviço</h3>
+                        <p>Acompanhe os serviços atribuídos a você.</p>
+                    </div>
+
+                    <a href="servicos-mecanico.html">Ver todas</a>
+                </div>
+
+                <div id="resumoOrdensMecanico">
+                    Carregando ordens de serviço...
+                </div>
+
+            </div>
+
+            <div class="bloco">
+
+                <div class="bloco-titulo">
+                    <div>
+                        <h3>Minha agenda</h3>
+                        <p>Consulte seus próximos atendimentos.</p>
+                    </div>
+
+                    <a href="agenda-mecanico.html">Ver agenda</a>
+                </div>
+
+                <div id="resumoAgendaMecanico">
+                    Carregando agendamentos...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-mecanico.js"></script>
+    <script src="js/inicial-mecanico.js"></script>
+</body>
+</html>

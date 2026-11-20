@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/agenda-mecanico.css">
+    <title>Motrix | Minha Agenda - Mecânico</title>
+</head>
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-mecanico.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-mecanico.html">Inicial</a>
+            <a href="servicos-mecanico.html">Ordens de Serviço</a>
+            <a href="agenda-mecanico.html" class="ativo">Minha agenda</a>
+            <a href="dados-mecanico.html">Meus dados</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarMecanico">M</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Mecânico</strong>
+                <span>Perfil mecânico</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Minha Agenda</h2>
+                <p>Consulte os serviços agendados e seus horários.</p>
+            </div>
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Agendamentos</h3>
+                    <p id="subtituloMecanicoAgenda">Mecânico logado</p>
+                </div>
+            </div>
+
+            <div class="filtros">
+                <label for="filtroData">Filtrar por data:</label>
+                <input type="date" id="filtroData">
+                <button type="button" class="botao-limpar" onclick="limparFiltro()">Limpar</button>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data / Horário</th>
+                            <th>Cliente</th>
+                            <th>Veículo</th>
+                            <th>Serviço</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaAgenda"></tbody>
+                </table>
+            </div>
+
+            <p id="mensagemAgenda"></p>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-mecanico.js"></script>
+    <script src="js/agenda-mecanico.js"></script>
+
+</body>
+</html>

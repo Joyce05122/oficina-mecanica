@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/inicial-adm.css">
+    <title>Motrix | Painel Administrativo</title>
+</head>
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-adm.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-adm.html" class="ativo">Inicial</a>
+            <a href="clientes-adm.html">Clientes</a>
+            <a href="veiculos-adm.html">Veículos</a>
+            <a href="servicos-adm.html">Ordens de Serviço</a>
+            <a href="agenda-adm.html">Agenda</a>
+            <a href="usuarios-adm.html">Usuários</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarAdmin">A</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Administrador</strong>
+                <span>Perfil administrativo</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="boas-vindas">
+            <div>
+                <h2 id="saudacaoAdmin">Olá, Administrador!</h2>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Clientes</span>
+                </div>
+                <h2 id="totalClientesDashboard">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Veículos</span>
+                </div>
+                <h2 id="totalVeiculosDashboard">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Ordens em andamento</span>
+                </div>
+                <h2 id="totalAndamentoDashboard">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Ordens concluídas</span>
+                </div>
+                <h2 id="totalConcluidasDashboard">0</h2>
+            </article>
+
+        </section>
+
+        <section class="painel-inferior">
+
+            <div class="bloco">
+
+                <div class="bloco-titulo">
+                    <div>
+                        <h3>Ordens de serviço recentes</h3>
+                        <p>Últimos atendimentos registrados.</p>
+                    </div>
+
+                    <a href="servicos-adm.html">Ver todas</a>
+                </div>
+
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nº OS</th>
+                                <th>Cliente</th>
+                                <th>Veículo</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelaRecentesDashboard">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="bloco">
+
+                <div class="bloco-titulo">
+                    <div>
+                        <h3>Agenda de hoje</h3>
+                        <p>Próximos atendimentos.</p>
+                    </div>
+
+                    <a href="agenda-adm.html">Ver agenda</a>
+                </div>
+
+                <div id="listaAgendaHojeDashboard"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-adm.js"></script>
+    <script src="js/inicial-adm.js"></script>
+</body>
+</html>

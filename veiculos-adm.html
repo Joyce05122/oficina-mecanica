@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/veiculos-adm.css">
+    <title>Veículos | Motrix</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-adm.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-adm.html">Inicial</a>
+            <a href="clientes-adm.html">Clientes</a>
+            <a href="veiculos-adm.html" class="ativo">Veículos</a>
+            <a href="servicos-adm.html">Ordens de Serviço</a>
+            <a href="agenda-adm.html">Agenda</a>
+            <a href="usuarios-adm.html">Usuários</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarAdmin">A</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Administrador</strong>
+                <span>Perfil administrativo</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Gerenciamento de Veículos</h2>
+                <p>Cadastre, consulte e gerencie os veículos dos clientes.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Total de veículos</span>
+                </div>
+                <h2 id="total-veiculos">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Veículos em atendimento</span>
+                </div>
+                <h2 id="veiculos-atendimento">0</h2>
+            </article>
+
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Lista de veículos</h3>
+                    <p>Consulte as informações dos veículos cadastrados.</p>
+                </div>
+
+                <button type="button" class="botao" id="abrir-formulario">
+                    + Novo veículo
+                </button>
+            </div>
+
+            <div class="pesquisa">
+                <input
+                    type="search"
+                    id="pesquisar-veiculo"
+                    placeholder="Pesquisar por placa, modelo ou proprietário..."
+                >
+            </div>
+
+            <div class="tabela-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Ano</th>
+                            <th>Proprietário</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="lista-veiculos">
+                        <tr>
+                            <td colspan="7" class="vazio">
+                                Nenhum veículo cadastrado.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+        <section class="modal" id="modal-veiculo" hidden>
+
+            <div class="formulario">
+
+                <div class="formulario-topo">
+                    <div>
+                        <h2 id="titulo-formulario">Cadastrar veículo</h2>
+                        <p>Preencha os dados para cadastrar um veículo.</p>
+                    </div>
+
+                    <button type="button" class="fechar" id="fechar-formulario">
+                        &times;
+                    </button>
+                </div>
+
+                <form id="form-veiculo">
+
+                    <input type="hidden" id="indice-veiculo">
+
+                    <div class="campo">
+                        <label for="proprietario">Nome do proprietário</label>
+                        <input
+                            type="text"
+                            id="proprietario"
+                            required
+                            placeholder="Digite o nome do cliente"
+                        >
+                    </div>
+
+                    <div class="campos-duplos">
+
+                        <div class="campo">
+                            <label for="placa">Placa</label>
+                            <input
+                                type="text"
+                                id="placa"
+                                required
+                                maxlength="7"
+                                placeholder="ABC1D23"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="marca">Marca</label>
+                            <input
+                                type="text"
+                                id="marca"
+                                required
+                                placeholder="Ex.: Chevrolet"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="campos-duplos">
+
+                        <div class="campo">
+                            <label for="modelo">Modelo</label>
+                            <input
+                                type="text"
+                                id="modelo"
+                                required
+                                placeholder="Ex.: Onix"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="ano">Ano</label>
+                            <input
+                                type="number"
+                                id="ano"
+                                required
+                                min="1900"
+                                max="2100"
+                                placeholder="Ex.: 2022"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label for="cor">Cor</label>
+                        <input
+                            type="text"
+                            id="cor"
+                            placeholder="Ex.: Prata"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="status-veiculo">Status</label>
+                        <select id="status-veiculo">
+                            <option value="Disponível">Disponível</option>
+                            <option value="Em atendimento">Em atendimento</option>
+                        </select>
+                    </div>
+
+                    <div class="botoes-formulario">
+
+                        <button
+                            type="button"
+                            class="botao-cancelar"
+                            id="cancelar-formulario">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="botao">
+                            Salvar veículo
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-adm.js"></script>
+    <script src="js/veiculos.js"></script>
+
+</body>
+</html>

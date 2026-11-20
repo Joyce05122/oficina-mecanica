@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/usuarios-adm.css">
+    <title>Motrix | Gestão de Usuários</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-adm.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-adm.html">Inicial</a>
+            <a href="clientes-adm.html">Clientes</a>
+            <a href="veiculos-adm.html">Veículos</a>
+            <a href="servicos-adm.html">Ordens de Serviço</a>
+            <a href="agenda-adm.html">Agenda</a>
+            <a href="usuarios-adm.html" class="ativo">Usuários</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarAdmin">A</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Administrador</strong>
+                <span>Perfil administrativo</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Gerenciamento de Usuários</h2>
+                <p>Controle de perfis de acesso, administradores e mecânicos da oficina.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Total de usuários</span>
+                </div>
+                <h2 id="totalUsuarios">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Administradores</span>
+                </div>
+                <h2 id="totalAdmins">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Mecânicos</span>
+                </div>
+                <h2 id="totalMecanicos">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Ativos no sistema</span>
+                </div>
+                <h2 id="totalAtivos">0</h2>
+            </article>
+
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Lista de Usuários Cadastrados</h3>
+                    <p>Consulte e gerencie as permissões de acesso ao sistema.</p>
+                </div>
+
+                <button type="button" class="botao" onclick="abrirModal()">
+                    + Novo Usuário
+                </button>
+            </div>
+
+            <div class="filtros">
+                <input
+                    type="search"
+                    id="campoBuscaUsuario"
+                    placeholder="Buscar por nome ou e-mail..."
+                >
+
+                <select id="filtroPerfil">
+                    <option value="">Todos os perfis</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Mecanico">Mecânico</option>
+                </select>
+
+                <button type="button" class="botao-limpar" onclick="limparFiltros()">
+                    Limpar filtros
+                </button>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Perfil</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaUsuarios">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="rodape-tabela">
+                <span id="informacaoPagina">Mostrando registros cadastrados</span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="modal" id="modalUsuario">
+        <div class="modal-conteudo">
+            <div class="modal-cabecalho">
+                <div>
+                    <h2 id="tituloModal">Novo Usuário</h2>
+                    <p>Preencha os dados de acesso e perfil.</p>
+                </div>
+                <button type="button" class="fechar-modal" onclick="fecharModal()">×</button>
+            </div>
+
+            <form id="formUsuario">
+                <input type="hidden" id="idUsuario">
+
+                <div class="campo">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" required placeholder="Ex: Carlos Alberto">
+                </div>
+
+                <div class="campo">
+                    <label for="email">E-mail de acesso</label>
+                    <input type="email" id="email" required placeholder="usuario@motrix.com">
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha temporária ou de acesso</label>
+                    <input type="password" id="senha" placeholder="Mínimo de 6 caracteres">
+                </div>
+
+                <div class="campo">
+                    <label for="perfil">Perfil de acesso</label>
+                    <select id="perfil" required>
+                        <option value="">Selecione o perfil</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Mecanico">Mecânico</option>
+                    </select>
+                </div>
+
+                <div class="botoes-modal">
+                    <button type="button" class="botao-cancelar" onclick="fecharModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="botao">
+                        Salvar usuário
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-adm.js"></script>
+    <script src="js/usuarios.js"></script>
+</body>
+</html>

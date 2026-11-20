@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/agenda-adm.css">
+    <title>Motrix | Agenda</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-adm.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-adm.html">Inicial</a>
+            <a href="clientes-adm.html">Clientes</a>
+            <a href="veiculos-adm.html">Veículos</a>
+            <a href="servicos-adm.html">Ordens de Serviço</a>
+            <a href="agenda-adm.html" class="ativo">Agenda</a>
+            <a href="usuarios-adm.html">Usuários</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarAdmin">A</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Administrador</strong>
+                <span>Perfil administrativo</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Agenda da Oficina</h2>
+                <p>Organize os serviços e acompanhe os horários dos mecânicos.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Total de agendamentos</span>
+                </div>
+                <h2 id="totalAgendamentos">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Em andamento</span>
+                </div>
+                <h2 id="emAndamento">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Concluídos</span>
+                </div>
+                <h2 id="concluidos">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Agendados</span>
+                </div>
+                <h2 id="agendados">0</h2>
+            </article>
+
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Programação de serviços</h3>
+                    <p>Visualize os compromissos da oficina.</p>
+                </div>
+
+                <span id="dataSelecionada" hidden>Hoje</span>
+
+                <button type="button" class="botao" onclick="abrirModal()">
+                    + Novo Agendamento
+                </button>
+            </div>
+
+            <div class="filtros">
+
+                <input type="date" id="filtroData">
+
+                <select id="filtroMecanico">
+                    <option value="">Todos os mecânicos</option>
+                </select>
+
+                <button type="button" class="botao-limpar" onclick="limparFiltros()">
+                    Limpar filtros
+                </button>
+
+            </div>
+
+            <div class="legenda">
+                <span><i class="cor-agendado"></i> Agendado</span>
+                <span><i class="cor-andamento"></i> Em andamento</span>
+                <span><i class="cor-concluido"></i> Concluído</span>
+                <span><i class="cor-cancelado"></i> Cancelado</span>
+            </div>
+
+            <div class="lista-agenda" id="listaAgenda"></div>
+
+            <div class="sem-agendamentos" id="semAgendamentos" hidden>
+                Nenhum agendamento encontrado para esta data.
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="modal" id="modalAgendamento">
+
+        <div class="modal-conteudo">
+
+            <div class="modal-cabecalho">
+                <div>
+                    <h2 id="tituloModal">Novo Agendamento</h2>
+                    <p>Informe os dados do serviço.</p>
+                </div>
+
+                <button type="button" class="fechar-modal" onclick="fecharModal()">×</button>
+            </div>
+
+            <form id="formAgendamento">
+
+                <input type="hidden" id="idAgendamento">
+
+                <div class="campo">
+                    <label for="cliente">Cliente</label>
+                    <select id="cliente" required>
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="veiculo">Veículo</label>
+                    <select id="veiculo" required>
+                        <option value="">Selecione primeiro um cliente</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="mecanico">Mecânico responsável</label>
+                    <select id="mecanico" required>
+                        <option value="">Selecione o mecânico</option>
+                    </select>
+                </div>
+
+                <div class="linha-campos">
+
+                    <div class="campo">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="horario">Horário</label>
+                        <input type="time" id="horario" required>
+                    </div>
+
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descrição do serviço</label>
+                    <textarea id="descricao" rows="3" required placeholder="Descreva o serviço"></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="status">Status</label>
+                    <select id="status" required>
+                        <option value="Agendado">Agendado</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="botoes-modal">
+
+                    <button type="button" class="botao-cancelar" onclick="fecharModal()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="botao">
+                        Salvar agendamento
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-adm.js"></script>
+    <script src="js/agenda.js"></script>
+
+</body>
+</html>

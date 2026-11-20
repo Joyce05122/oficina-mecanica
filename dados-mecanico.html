@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/dados-mecanico.css">
+    <title>Motrix | Meus Dados</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-mecanico.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-mecanico.html">Inicial</a>
+            <a href="servicos-mecanico.html">Ordens de Serviço</a>
+            <a href="agenda-mecanico.html">Minha agenda</a>
+            <a href="dados-mecanico.html" class="ativo">Meus dados</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarMecanico">M</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Mecânico</strong>
+                <span>Perfil mecânico</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Meus Dados</h2>
+                <p>Visualize e atualize suas informações pessoais e senha de acesso.</p>
+            </div>
+        </section>
+
+        <section class="painel-dados">
+
+            <aside class="cartao-perfil">
+                <div class="avatar-grande" id="avatarPerfilGrande">M</div>
+                <h3 id="perfilNomeExibicao">Mecânico</h3>
+                <p id="perfilEmailExibicao">mecanico@motrix.com</p>
+                <span class="badge-perfil">Mecânico</span>
+
+                <div class="info-extra">
+                    <span>ID do cadastro</span>
+                    <strong id="perfilIdExibicao">#0</strong>
+                </div>
+            </aside>
+
+            <div class="bloco">
+                <div class="bloco-titulo">
+                    <div>
+                        <h3>Informações da Conta</h3>
+                        <p>Mantenha seus dados atualizados no sistema.</p>
+                    </div>
+                </div>
+
+                <form id="formMeusDados" class="form-dados">
+                    <div class="campo">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail de acesso</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="linha-dupla">
+                        <div class="campo">
+                            <label for="novaSenha">Nova senha (opcional)</label>
+                            <input type="password" id="novaSenha" name="novaSenha" placeholder="Deixe em branco para manter">
+                        </div>
+
+                        <div class="campo">
+                            <label for="confirmarSenha">Confirmar nova senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita a nova senha">
+                        </div>
+                    </div>
+
+                    <div class="acoes-form">
+                        <button type="submit" class="botao">Salvar alterações</button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-mecanico.js"></script>
+    <script src="js/dados-mecanico.js"></script>
+</body>
+</html>

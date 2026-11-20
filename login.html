@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Motrix | Login</title>
+</head>
+<body>
+
+    <main class="login-container">
+        <div class="login-card">
+
+            <div class="login-logo">
+                <span class="icone">⚙</span>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+
+            <div class="login-titulo">
+                <h2>Entrar no sistema</h2>
+                <p>Informe seus dados de acesso para continuar.</p>
+            </div>
+
+            <form id="formLogin" action="php/login.php" method="POST">
+
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+                </div>
+
+                <div class="campo">
+                    <label for="perfil">Perfil de acesso</label>
+                    <select id="perfil" name="perfil" required>
+                        <option value="">Selecione o perfil</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Mecanico">Mecânico</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="botao-login">Entrar</button>
+
+            </form>
+
+            <div class="cadastro-link">
+                <p>Não possui conta?</p>
+                <a href="cadastro.html">Cadastrar usuário</a>
+            </div>
+
+            <p class="login-rodape">© 2026 Motrix. Todos os direitos reservados.</p>
+
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
