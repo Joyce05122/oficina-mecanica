@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/servicos-mecanico.css">
+    <title>Motrix | Ordens de Serviço - Mecânico</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-mecanico.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-mecanico.html">Inicial</a>
+            <a href="servicos-mecanico.html" class="ativo">Ordens de Serviço</a>
+            <a href="agenda-mecanico.html">Minha agenda</a>
+            <a href="dados-mecanico.html">Meus dados</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarMecanico">M</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Mecânico</strong>
+                <span>Perfil mecânico</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Ordens de Serviço</h2>
+                <p>Consulte e acompanhe os serviços atribuídos a você.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Ordens pendentes</span>
+                </div>
+                <h2 id="ordensPendentes">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Em andamento</span>
+                </div>
+                <h2 id="ordensAndamento">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Concluídas</span>
+                </div>
+                <h2 id="ordensConcluidas">0</h2>
+            </article>
+
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Minhas ordens de serviço</h3>
+                    <p>Consulte os detalhes e atualize o andamento dos serviços.</p>
+                </div>
+            </div>
+
+            <div class="filtros">
+
+                <input
+                    type="search"
+                    id="campoBusca"
+                    placeholder="Buscar por cliente, veículo ou número..."
+                >
+
+                <input
+                    type="date"
+                    id="filtroData"
+                    title="Filtrar por data de atendimento"
+                >
+
+                <select id="filtroStatus">
+                    <option value="">Todos os status</option>
+                    <option value="Aberta">Aberta</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Aguardando peças">Aguardando peças</option>
+                    <option value="Concluída">Concluída</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+
+                <button type="button" class="botao-limpar" onclick="limparFiltros()">
+                    Limpar filtros
+                </button>
+
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nº OS</th>
+                            <th>Cliente</th>
+                            <th>Veículo</th>
+                            <th>Data / Horário</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaOrdens"></tbody>
+                </table>
+            </div>
+
+            <div class="rodape-tabela">
+                <span id="informacaoPagina"></span>
+
+                <div class="paginacao">
+                    <button type="button" id="paginaAnterior" onclick="mudarPagina(-1)">
+                        Anterior
+                    </button>
+
+                    <span id="numeroPagina"></span>
+
+                    <button type="button" id="proximaPagina" onclick="mudarPagina(1)">
+                        Próxima
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="modal" id="modalOrdem">
+        <div class="modal-conteudo">
+
+            <div class="modal-cabecalho">
+                <div>
+                    <h2>Detalhes da Ordem</h2>
+                    <p>Informações do serviço atribuído.</p>
+                </div>
+
+                <button type="button" class="fechar-modal" onclick="fecharModal()">×</button>
+            </div>
+
+            <div id="detalhesOrdem"></div>
+
+            <div class="botoes-modal">
+                <button type="button" class="botao-cancelar" onclick="fecharModal()">
+                    Fechar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-mecanico.js"></script>
+    <script src="js/servicos-mecanico.js"></script>
+
+</body>
+</html>

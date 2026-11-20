@@ -1,0 +1,175 @@
+.conteudo {
+    width: 100%;
+    max-width: 1500px;
+    padding: 35px 4%;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.titulo-pagina {
+    margin-bottom: 25px;
+}
+
+.titulo-pagina h2 {
+    color: #172033;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.titulo-pagina p {
+    color: #64748B;
+    font-size: 14px;
+}
+
+.bloco {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 0;
+    box-shadow: 0 4px 14px rgba(23, 32, 51, 0.04);
+}
+
+.bloco-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.bloco-titulo h3 {
+    color: #172033;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.bloco-titulo p {
+    color: #94A3B8;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.filtros {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filtros label {
+    color: #344054;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.filtros input {
+    height: 43px;
+    padding: 0 12px;
+    border: 1px solid #DCE2EB;
+    border-radius: 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #172033;
+    background: #FFFFFF;
+    outline: none;
+    transition: 0.2s;
+}
+
+.filtros input:focus {
+    border-color: #F59E0B;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.14);
+}
+
+.botao-limpar {
+    height: 43px;
+    padding: 0 16px;
+    background: #E2E8F0;
+    color: #343A40;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-limpar:hover {
+    background: #CBD5E1;
+}
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+    text-align: left;
+}
+
+thead {
+    background: #F8FAFC;
+}
+
+th {
+    color: #64748B;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 13px 12px;
+    white-space: nowrap;
+}
+
+td {
+    color: #475569;
+    font-size: 13px;
+    padding: 15px 12px;
+    border-bottom: 1px solid #E2E8F0;
+    white-space: nowrap;
+}
+
+tbody tr:hover {
+    background: #F8FAFC;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.status-agendado {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.status-andamento {
+    background: #DBEAFE;
+    color: #1D4ED8;
+}
+
+.status-concluida {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+.status-cancelada {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+
+#mensagemAgenda {
+    margin-top: 18px;
+    color: #64748B;
+    font-size: 13px;
+}

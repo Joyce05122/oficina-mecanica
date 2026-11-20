@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/padrao.css">
+    <link rel="stylesheet" href="css/servicos-adm.css">
+    <title>Ordens de Serviço | Motrix</title>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <a href="inicial-adm.html" class="logo">
+            <span class="logo-icone">⚙</span>
+            <div>
+                <h1>MOTRIX</h1>
+                <p>Gestão Automotiva</p>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="inicial-adm.html">Inicial</a>
+            <a href="clientes-adm.html">Clientes</a>
+            <a href="veiculos-adm.html">Veículos</a>
+            <a href="servicos-adm.html" class="ativo">Ordens de Serviço</a>
+            <a href="agenda-adm.html">Agenda</a>
+            <a href="usuarios-adm.html">Usuários</a>
+        </nav>
+
+        <div class="usuario">
+            <div class="avatar" id="avatarAdmin">A</div>
+
+            <div class="usuario-info">
+                <strong id="nomeUsuarioLogado">Administrador</strong>
+                <span>Perfil administrativo</span>
+            </div>
+
+            <a href="php/sair.php" class="botao-sair">Sair</a>
+        </div>
+
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <div>
+                <h2>Ordens de Serviço</h2>
+                <p>Gerencie os serviços realizados na oficina.</p>
+            </div>
+        </section>
+
+        <section class="indicadores">
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Total de ordens</span>
+                </div>
+                <h2 id="totalOrdens">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Em andamento</span>
+                </div>
+                <h2 id="ordensAndamento">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Concluídas</span>
+                </div>
+                <h2 id="ordensConcluidas">0</h2>
+            </article>
+
+            <article class="card">
+                <div class="card-titulo">
+                    <span>Pendentes</span>
+                </div>
+                <h2 id="ordensPendentes">0</h2>
+            </article>
+
+        </section>
+
+        <section class="bloco">
+
+            <div class="bloco-titulo">
+                <div>
+                    <h3>Lista de Ordens de Serviço</h3>
+                    <p>Consulte e acompanhe os serviços cadastrados.</p>
+                </div>
+
+                <button type="button" class="botao" onclick="abrirModal()">
+                    + Nova Ordem de Serviço
+                </button>
+            </div>
+
+            <div class="filtros">
+
+                <input
+                    type="search"
+                    id="campoBusca"
+                    placeholder="Buscar por cliente, veículo ou número..."
+                >
+
+                <input
+                    type="date"
+                    id="filtroData"
+                    title="Filtrar por data de atendimento"
+                >
+
+                <select id="filtroStatus">
+                    <option value="">Todos os status</option>
+                    <option value="Aberta">Aberta</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Aguardando peças">Aguardando peças</option>
+                    <option value="Concluída">Concluída</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+
+                <button type="button" class="botao-limpar" onclick="limparFiltros()">
+                    Limpar filtros
+                </button>
+
+            </div>
+
+            <div class="tabela-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nº OS</th>
+                            <th>Cliente</th>
+                            <th>Veículo</th>
+                            <th>Mecânico</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaOrdens"></tbody>
+                </table>
+
+            </div>
+
+            <div class="rodape-tabela">
+                <span id="informacaoPagina"></span>
+
+                <div class="paginacao">
+
+                    <button type="button" id="paginaAnterior" onclick="mudarPagina(-1)">
+                        Anterior
+                    </button>
+
+                    <span id="numeroPagina"></span>
+
+                    <button type="button" id="proximaPagina" onclick="mudarPagina(1)">
+                        Próxima
+                    </button>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="modal" id="modalOrdem">
+
+        <div class="modal-conteudo">
+
+            <div class="modal-cabecalho">
+                <div>
+                    <h2 id="tituloModal">Nova Ordem de Serviço</h2>
+                    <p>Preencha os dados do serviço.</p>
+                </div>
+
+                <button type="button" class="fechar-modal" onclick="fecharModal()">
+                    ×
+                </button>
+            </div>
+
+            <form id="formOrdem">
+
+                <input type="hidden" id="idOrdem">
+
+                <div class="campo">
+                    <label for="cliente">Cliente</label>
+                    <select id="cliente" required>
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="veiculoNome">Veículo do cliente</label>
+                    <input type="hidden" id="veiculo" required>
+                    <input
+                        type="text"
+                        id="veiculoNome"
+                        readonly
+                        placeholder="Preenchido automaticamente ao selecionar o cliente"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="mecanico">Mecânico responsável</label>
+                    <select id="mecanico" required>
+                        <option value="">Selecione um mecânico</option>
+                    </select>
+                </div>
+
+                <div class="linha-campos">
+
+                    <div class="campo">
+                        <label for="data">Data do serviço</label>
+                        <input type="date" id="data" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="horario">Horário</label>
+                        <input type="time" id="horario" required>
+                    </div>
+
+                </div>
+
+                <div class="campo">
+                    <label for="valor">Valor (R$)</label>
+                    <input
+                        type="number"
+                        id="valor"
+                        min="0"
+                        step="0.01"
+                        required
+                        placeholder="0,00"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descrição do serviço</label>
+                    <textarea
+                        id="descricao"
+                        rows="3"
+                        required
+                        placeholder="Descreva o serviço a ser realizado"
+                    ></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="status">Status</label>
+                    <select id="status" required>
+                        <option value="Aberta">Aberta</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Aguardando peças">Aguardando peças</option>
+                        <option value="Concluída">Concluída</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+
+                <div class="botoes-modal">
+
+                    <button
+                        type="button"
+                        class="botao-cancelar"
+                        onclick="fecharModal()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="botao">
+                        Salvar ordem
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div>
+                <h3>MOTRIX</h3>
+                <p>Controle e eficiência em cada serviço.</p>
+            </div>
+            <p>© 2026 Motrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/verificar-adm.js"></script>
+    <script src="js/servicos.js"></script>
+
+</body>
+</html>
